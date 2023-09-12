@@ -12,7 +12,7 @@
 
 #include "../includes/static_image_noise_simulator.h"
 
-static void	randomizer(void *parameters);
+static void	randomizer(void);
 static int32_t	pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 static void	ft_hook(void* param);
 
@@ -33,7 +33,7 @@ int	main(void)
 		return (EXIT_FAILURE);
 	}
 	mlx_set_cursor_mode(mlx, MLX_MOUSE_DISABLED);
-	mlx_loop_hook(mlx, randomizer, mlx);
+	mlx_loop_hook(mlx, (void (*)(void *)) randomizer, mlx);
 	mlx_loop_hook(mlx, ft_hook, mlx);
 
 	mlx_loop(mlx);
@@ -41,16 +41,15 @@ int	main(void)
 	return (EXIT_SUCCESS);
 }
 
-static void	randomizer(void *parameter)
+static void	randomizer(void)
 {
-	parameter++;
 	for (uint32_t x = 0; x < image->width; ++x)
 		for (uint32_t y = 0; y < image->height; ++y)
 			mlx_put_pixel(image, x, y, pixel(
-				random() % 0xFF,
-				random() % 0xFF,
-				random() % 0xFF,
-				random() % 0xFF
+					(int32_t)random() % 0xFF,
+					(int32_t)random() % 0xFF,
+					(int32_t)random() % 0xFF,
+					(int32_t)random() % 0xFF
 			));
 }
 
