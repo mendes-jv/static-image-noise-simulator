@@ -3,4 +3,4 @@
 	url = git@github.com:codam-coding-college/MLX42.git
 [submodule "LIBFT"]
 	path = libraries/libft
-	url = https://github.com/mendes-jv/libft
+	url = git@github.com:mendes-jv/libft.git
