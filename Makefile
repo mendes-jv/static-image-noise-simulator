@@ -50,7 +50,7 @@ HEADERS			:= -I $(HEADERS_DIR) -I $(MLX_HEADER)
 
 all: libraries $(NAME)
 
-libraries: $(LIBFT) $(MLX)
+libraries: $(MLX) $(LIBFT)
 
 $(NAME): $(OBJECTS)
 	$(CC) $(CFLAGS) $(FSANITIZE) $(OBJECTS) $(LIBFT) $(MLX) -o $(NAME) $(HEADERS)
@@ -79,7 +79,8 @@ cleanmlx:
 fclean: clean
 	$(RM) $(NAME)
 
-re: fclean all
+re: fclean
+	$(MAKE)
 
 run: all
 	./$(NAME)
